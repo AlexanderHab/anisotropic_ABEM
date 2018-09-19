@@ -6,10 +6,10 @@
 /*                                                                         */
 /*                                                                         */
 /***************************************************************************/
-/* Author: Peter Schaefer                             schaeferpm@gmail.com */
-/* Alexx 2018                                                              */
-/* Version: 1.0  (2012)                                                    */
+/* Code is based on the bachelor thesis of Peter Schäfer                   */
+/* adaptiert von Alexx 2018                                                */
 /***************************************************************************/
+
 
 #include <math.h>
 #include <mex.h>
@@ -596,7 +596,7 @@ double inline F_par_pone(double x1, double x2, double y1, double y2, double d1,
     double sol = 0;
 
       if(k+l+m+n == 0)
-         printf("F_par_pone: p= %f, x1=%f, x2=%f, y1=%f, y2=%f, d1=%f, d2=%f, a=%f, k=%f,l=%f, m=%f, n=%f \n", p,x1,x2,y1,y2,d1,d2,a,k,l,m,n);
+  //       printf("F_par_pone: p= %f, x1=%f, x2=%f, y1=%f, y2=%f, d1=%f, d2=%f, a=%f, k=%f,l=%f, m=%f, n=%f \n", p,x1,x2,y1,y2,d1,d2,a,k,l,m,n);
 
       sol += pow(y1,m+1)*G_3_neu(p,x2,x1,y2,y1+d1,d2,a,l,k,n);
 

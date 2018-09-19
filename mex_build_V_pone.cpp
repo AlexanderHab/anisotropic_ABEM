@@ -23,9 +23,11 @@
 /*                                                                         */
 /*                                                                         */
 /***************************************************************************/
-/* Author: Peter Schaefer                                                  */
-/* adaptiert von Alexx Aug. 18                                             */
+/* Code is based on the bachelor thesis of Peter Schäfer                   */
+/* adaptiert von Alexx 2018                                                */
 /***************************************************************************/
+
+
 
 /*
  * wenn gesetzt wird, paralleles Rechnen benutzt
@@ -546,7 +548,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
                           for(int c1 =0; c1<4; c1++){
                             for(int c2=0; c2<4; c2++){
                                 
-                                printf("first %d %d \n", c1, c2);
+                                //printf("first %d %d \n", c1, c2);
 
                                 monIndex(temp_index, c1, c2);                            
 //                                 printf("input: %f %f %f %f || %f %f %f || %f %f %f %f \n", xb[rxb], (xa[rxa]), (ya[rya]),
@@ -562,7 +564,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
                                 
                                 
                              if(c1+c2 == 0)
-                                 printf("A(%d,%d)=%f \n",c1,c2,1. / (4 * M_PI) * tmp);
+//                               printf("A(%d,%d)=%f \n",c1,c2,1. / (4 * M_PI) * tmp);
                              //printf(" index %d \n",matIndex(j,k,c1,c2,em));
                              A[matIndex(j,k,c1,c2,em)] = 1. / (4 * M_PI) * tmp;
                             
