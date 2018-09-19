@@ -595,7 +595,7 @@ double inline F_par_pone(double x1, double x2, double y1, double y2, double d1,
     double p = -1./2;
     double sol = 0;
 
-      if(k+l+m+n == 0)
+      //if(k+l+m+n == 0)
   //       printf("F_par_pone: p= %f, x1=%f, x2=%f, y1=%f, y2=%f, d1=%f, d2=%f, a=%f, k=%f,l=%f, m=%f, n=%f \n", p,x1,x2,y1,y2,d1,d2,a,k,l,m,n);
 
       sol += pow(y1,m+1)*G_3_neu(p,x2,x1,y2,y1+d1,d2,a,l,k,n);
@@ -604,6 +604,7 @@ double inline F_par_pone(double x1, double x2, double y1, double y2, double d1,
         printf(" G_3_neu(p,x2, x1,y2,y1+d1,d2,a,l,k,n): %f %f %f %f %f %f %f %f %f %f \n", p,x2, x1,y2,y1+d1,d2,a,l,k,n);
 
       sol += pow(x1,k)*G_3_neu(p,x2,y1,y2,x1-d1,d2,a,l,m+1,n);    //x1 is not sure!! x2 should be y2, typo on in the paper
+      
       if(isnan(sol))
         printf(" G_3_neu(p,y2,y1,y2,x1-d1,d2,a,l,m+1,n): %f %f %f %f %f %f %f %f %f %f \n", p,y2,y1,y2,x1-d1,d2,a,l,m+1,n);
 

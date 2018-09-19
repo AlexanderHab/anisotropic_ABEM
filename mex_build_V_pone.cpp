@@ -563,10 +563,11 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
 //                                 printf(" indices el:%d,%d -> node:%d,%d \n",j,k,c1,c2);
                                 
                                 
-                             if(c1+c2 == 0)
-//                               printf("A(%d,%d)=%f \n",c1,c2,1. / (4 * M_PI) * tmp);
-                             //printf(" index %d \n",matIndex(j,k,c1,c2,em));
-                             A[matIndex(j,k,c1,c2,em)] = 1. / (4 * M_PI) * tmp;
+                             //if(c1+c2 == 0)
+                                //printf("A(%d,%d)=%f \n",c1,c2,1. / (4 * M_PI) * tmp);
+                                //printf(" index %d \n",matIndex(j,k,c1,c2,em));
+                              A[matIndex(j,k,c1,c2,em)] = 1. / (4 * M_PI) * tmp;
+                             
                             
                              if (k != j)
                                 A[matIndex(k,j,c1,c2,em)] = 1. / (4 * M_PI) * tmp;

@@ -46,15 +46,15 @@ steps =1; %Axx
  
 
 tic
- [a, b ,fileo]=compute_pone(file, steps, zeta, type, theta, nu, 0);
+ compute_pone(file, steps, zeta, type, theta, nu, 0);
 % 
- time = toc
- typeN = int2str(type);
- steps = size(a,1);
-
- A_plots({['meshSave/' fileo int2str(steps)]},...
-     ['plots/' fileo ...
-     int2str(steps)]);
+%  time = toc
+%  typeN = int2str(type);
+%  steps = size(a,1);
+% 
+%  A_plots({['meshSave/' fileo int2str(steps)]},...
+%      ['plots/' fileo ...
+%      int2str(steps)]);
   
 
 %% Tests für export_example

@@ -54,7 +54,7 @@ for j = 1:times
 
   %uniformIsotrop verfeinern
   % do some step of uniform refinement
-  num_steps = 4; 
+  num_steps = 1; 
   
   coo_fine = coordinates;
   ele_fine = elements; 
@@ -71,13 +71,14 @@ for j = 1:times
 
   %Flaecheninhalte berechnen (rhs)
   b_fine = 2.^-sum(sit_fine,2);
-  
-  
   b = 2.^-sum(sites,2);
-  %compute right-hand side
+  
+  
   el_size = 1/4;
-  el_size_fine = 1/4^num_steps;
+  el_size_fine = 1/4^(num_steps+1);
+  
   b_pone = repmat([el_size;el_size*1/4;el_size*1/4;el_size*1/4*1/4],24,1);
+  %b_pone = repmat([1/4*0.25;1/4*1/4;1/4*1/4;1/4*1/4*1/4],24,1);
   b_pone_fine = repmat([el_size_fine;el_size_fine*1/4;el_size_fine*1/4;el_size_fine*1/4*1/4],24*4^num_steps,1);
   
   
@@ -112,28 +113,24 @@ for j = 1:times
     V_pone = mex_build_V_pone(coordinates,elements,zeta{i},typ(i));
     build_time = toc;
     %testet auf fehlerhafte Eintraege (NaN +/-Inf)
-    fprintf("finished max \n")
     [r c] = find(isnan(V_pone)~=isinf(V_pone));
     
     
     V = mex_build_V(coordinates,elements,zeta{i},typ(i));
     build_time = toc;
     %testet auf fehlerhafte Eintraege (NaN +/-Inf)
-    fprintf("finished max \n")
     [r c] = find(isnan(V)~=isinf(V));
+    
     
     
     V_fine_pone = mex_build_V_pone(coo_fine,ele_fine,zeta{i},typ(i));
     build_time = toc;
-    %testet auf fehlerhafte Eintraege (NaN +/-Inf)
-    fprintf("finished max \n")
     [r c] = find(isnan(V_fine_pone)~=isinf(V_fine_pone));
     
     
     V_fine = mex_build_V(coo_fine,ele_fine,zeta{i},typ(i));
     build_time = toc;
     %testet auf fehlerhafte Eintraege (NaN +/-Inf)
-    fprintf("finished max \n")
     [r c] = find(isnan(V_fine)~=isinf(V_fine));
 
  
@@ -143,14 +140,15 @@ for j = 1:times
     %Loesung berechnen
        x_fine = V_fine\b_fine;
        x_fine_pone = V_fine_pone\b_pone_fine;
+       
        x = V\b;
        x_pone = V_pone\b_pone;
         
     solve_time = toc;
     
     %Konditionszahl aufstellen
-    con = cond(V_fine);
-    con_pone = cond(V_fine_pone);
+    con = cond(V);
+    con_pone = cond(V_pone);
    
     disp("condition number P1");
     disp(con_pone);
@@ -196,7 +194,7 @@ for j = 1:times
     xe_fine_pone = b_pone_fine'*x_fine_pone;
     
     xe = b'*x;
-    xe_pone = b_pone'*xponse;
+    xe_pone = b_pone'*x_pone;
     
     
     disp("difference in energy norm coarse ");
@@ -207,8 +205,7 @@ for j = 1:times
     disp(xe_pone);
     
     
-    
-    
+%     
     disp("difference in energy norm fine ");
     disp(abs(xe_fine_pone-xe_fine));
     disp("energynorm P0 fine :");
